@@ -1,0 +1,13 @@
+.calenderContainer {
+  display: flex;
+  padding: 10px 30px;
+  gap: 10px;
+  height: 100vh;
+  background-color: RGB(235, 235, 235);
+  .mainItem {
+    flex: 8;
+  }
+  .subItem {
+    flex: 2;
+  }
+}
