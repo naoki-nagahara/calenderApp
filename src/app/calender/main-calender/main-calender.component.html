@@ -1,48 +1,34 @@
-<div class="mainCalender">
-  <div class="mainCalender-container card">
-    <h1>6月</h1>
+<div class="mainCalender" #scrollContainer>
+  <div class="mainCalender-container card" *ngFor="let item of month">
+    <div class="year">
+      <h1>{{ year }}年</h1>
+      <h2 class="month">{{ item + 1 }}<span>月</span></h2>
+    </div>
     <div class="monthContainer">
       <div class="weeks">
-        <div *ngFor="let item of week" class="week">
-          <p>{{ item }}</p>
+        <div *ngFor="let week of weeks" class="week">
+          <p>{{ week }}</p>
         </div>
       </div>
       <div class="days">
-        <div class="days-inner" *ngFor="let item of days">
-          <p>{{ item }}</p>
-          <div class="itemSchedule">
-            <p>お買い物</p>
+        <div
+          class="days-inner"
+          *ngFor="let el of calendar[item]"
+          [ngClass]="{
+            style: el.style === false,
+            none: true,
+            done: el.style === false,
+            nowDay: el.nowDate === true
+          }"
+        >
+          <div class="dateContainer">
+            <span class="date">{{ el.date }}</span>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="mainCalender-container card">
-    <h1>6月</h1>
-    <div class="monthContainer">
-      <div class="weeks">
-        <div *ngFor="let item of week" class="week">
-          <p>{{ item }}</p>
-        </div>
-      </div>
-      <div class="days">
-        <div class="days-inner" *ngFor="let item of days">
-          <p>{{ item }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="mainCalender-container card">
-    <h1>6月</h1>
-    <div class="monthContainer">
-      <div class="weeks">
-        <div *ngFor="let item of week" class="week">
-          <p>{{ item }}</p>
-        </div>
-      </div>
-      <div class="days">
-        <div class="days-inner" *ngFor="let item of days">
-          <p>{{ item }}</p>
+          <div class="itemSchedule">
+            <!-- 改行してる場合と、３っつ以上のリストがある場合は、「...」で省略するようにする -->
+            <p>お買い物お買い物お買い物お買い物</p>
+            <p>19時 ジム</p>
+          </div>
         </div>
       </div>
     </div>

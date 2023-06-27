@@ -1,20 +1,39 @@
 <div class="subCalender">
   <div class="subCalenderInner card">
+    <div class="yearContainer">
+      <mat-icon class="calenderIcon">calendar_today</mat-icon>
+      <h1>{{ year }}</h1>
+    </div>
     <div class="monthTitle">
-      <span>＜</span>
-      <h1>{{ month[5] }}</h1>
-      <span>＞</span>
+      <mat-icon
+        class="next"
+        (click)="backMonth()"
+        [ngClass]="{ none: initialMonth === 0 }"
+        >navigate_before</mat-icon
+      >
+      <h1>{{ month[initialMonth + 1] }}</h1>
+      <mat-icon
+        class="next"
+        (click)="nextMonth()"
+        [ngClass]="{ none: initialMonth === 11 }"
+        >navigate_next</mat-icon
+      >
     </div>
     <div class="monthContainer">
       <div class="weeks">
-        <div *ngFor="let item of week">
+        <div
+          *ngFor="let item of weeks; let i = index"
+          [ngClass]="{ colorRed: i === 0 || i === 6 }"
+        >
           <p>{{ item }}</p>
         </div>
       </div>
     </div>
     <div class="days">
-      <div class="day" *ngFor="let item of days">
-        <span class="eventDay">{{ item }}</span>
+      <div class="day" *ngFor="let item of calendar[initialMonth]">
+        <span class="eventDay" [ngClass]="{ done: item.style === false }">{{
+          item.date
+        }}</span>
       </div>
     </div>
   </div>

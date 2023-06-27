@@ -1,65 +1,99 @@
 .mainCalender {
   width: 100%;
-  height: 100vh;
+  height: 88vh;
   overflow-y: auto;
-  position: relative;
   padding: 10px;
-
-  h1 {
-    text-align: center;
-    font-size: 30px;
-    padding: 30px 0 0 0;
-  }
-
   &::-webkit-scrollbar {
     display: none;
   }
   &-container {
-    height: 750px;
-    margin-bottom: 50px;
-  }
-  .monthContainer {
-    padding: 20px 60px 40px 60px;
-    height: 90%;
+    height: auto;
+    margin-bottom: 30px;
+    padding: 20px 40px 50px 40px;
 
-    .weeks {
+    .year {
+      justify-content: center;
       display: flex;
-      justify-content: space-around;
-      margin-bottom: 10px;
-      .week {
+      text-align: center;
+      font-weight: bold;
+      margin: 30px 0;
+      h1 {
+        align-self: flex-end;
+      }
+      .month {
+        font-size: 30px;
+        margin: 0 5px;
+        align-self: flex-end;
+        line-height: 1;
+        vertical-align: text-bottom;
+        display: inline-block;
+        margin: 0 5px;
+        padding: 0;
+      }
+      span {
+        font-size: 16px;
+        align-self: flex-end;
+      }
+    }
+    .monthContainer {
+      margin-top: 0 auto;
+
+      .weeks {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        text-align: center;
+        margin: 20px 0;
         p {
           font-weight: bold;
         }
       }
-    }
-    .days {
-      height: 100%;
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      .days-inner {
-        border: 1px solid rgb(173, 167, 167);
-        margin: 4px;
-        border-radius: 5px;
-        cursor: pointer;
-        &:hover {
-          background: rgb(230, 225, 225);
-        }
-        .itemSchedule {
-          width: 90%;
-          background: #000;
-          margin: 0 auto;
-          color: white;
+      .days {
+        display: grid;
+        gap: 1%;
+        grid-template-columns: repeat(7, 1fr);
+        grid-auto-rows: 1fr;
+        &-inner {
+          height: 100px;
+          width: 180px;
+          // border: 1px solid rgb(219, 210, 210);
+          border: 2px solid black;
           border-radius: 5px;
-          p {
-            font-size: 10px;
-            margin-bottom: 5px;
+          margin: 2px auto;
+          overflow: hidden;
+          cursor: pointer;
+          &:hover {
+            background: rgb(230, 225, 225);
+          }
+          .dateContainer {
+            padding: 3px;
+            .date {
+              font-weight: bold;
+              font-size: 14px;
+            }
+          }
+          .itemSchedule {
+            width: 90%;
+            margin: 0 auto;
+            p {
+              font-weight: bold;
+              font-size: 11px;
+              margin-bottom: 3px;
+              background-color: rgb(59, 153, 212);
+              padding: 3px 3px 3px 4px;
+              border-radius: 3px;
+              flex-wrap: nowrap;
+            }
           }
         }
-        p {
-          font-size: 16px;
-          padding: 5px;
-          text-align: left;
-          font-weight: bold;
+        .done {
+          border: none;
+          cursor: auto;
+          &:hover {
+            background: none;
+          }
+        }
+        .nowDay {
+          background: rgb(219, 205, 205);
         }
       }
     }

@@ -5,10 +5,32 @@
     padding: 20px 30px;
     width: 100%;
     height: 400px;
+    .yearContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+      h1 {
+        text-align: center;
+        font-weight: bold;
+        margin: 2px 0 0 5px;
+      }
+    }
+
     .monthTitle {
       font-weight: bold;
       display: flex;
       justify-content: space-between;
+      .next {
+        cursor: pointer;
+        padding: 5px;
+        user-select: none;
+        font-weight: bold;
+      }
+      .none {
+        color: gray;
+        cursor: auto;
+      }
     }
     .monthContainer {
       .weeks {
@@ -18,6 +40,9 @@
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         text-align: center;
+        .colorRed {
+          color: red;
+        }
       }
     }
     .days {
@@ -30,8 +55,8 @@
       border-bottom: 0.5px solid black;
       .day {
         .eventDay {
-          background: #000;
-          color: white;
+          // background: #000;
+          color: black;
           border-radius: 50%;
         }
         span {
@@ -42,6 +67,9 @@
           font-weight: bold;
           font-size: 12px;
           padding-top: 7px;
+        }
+        .done {
+          background: none;
         }
       }
     }

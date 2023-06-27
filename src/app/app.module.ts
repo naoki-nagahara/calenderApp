@@ -9,6 +9,8 @@ import { CalenderComponent } from './calender/calender.component';
 import { MainCalenderComponent } from './calender/main-calender/main-calender.component';
 import { SubCalenderComponent } from './calender/sub-calender/sub-calender.component';
 import { ScheduleComponent } from './calender/sub-calender/schedule/schedule.component';
+import { AddScheduleComponent } from './add-schedule/add-schedule.component';
+import { CalenderItemComponent } from './calender/calender-item/calender-item.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { ScheduleComponent } from './calender/sub-calender/schedule/schedule.com
     MainCalenderComponent,
     SubCalenderComponent,
     ScheduleComponent,
+    AddScheduleComponent,
+    CalenderItemComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, MatIconModule],
   providers: [],
