@@ -16,7 +16,7 @@
       display: flex;
       text-align: center;
       font-weight: bold;
-      margin: 30px 0;
+      margin: 10px 0;
       h1 {
         align-self: flex-end;
       }
@@ -42,7 +42,7 @@
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         text-align: center;
-        margin: 20px 0;
+        margin: 10px 0;
         p {
           font-weight: bold;
         }
@@ -54,11 +54,11 @@
         grid-auto-rows: 1fr;
         &-inner {
           height: 100px;
-          width: 180px;
+          width: 185px;
           // border: 1px solid rgb(219, 210, 210);
-          border: 2px solid black;
+          border: 2px solid rgb(161, 156, 156);
           border-radius: 5px;
-          margin: 2px auto;
+          margin: 4px auto;
           overflow: hidden;
           cursor: pointer;
           &:hover {
@@ -74,18 +74,45 @@
           .itemSchedule {
             width: 90%;
             margin: 0 auto;
-            p {
-              font-weight: bold;
-              font-size: 11px;
-              margin-bottom: 3px;
-              background-color: rgb(59, 153, 212);
-              padding: 3px 3px 3px 4px;
+            margin-top: 3px;
+            height: 100px;
+            .item {
+              margin-bottom: 6px;
+              background-color: RGB(95, 122, 227);
               border-radius: 3px;
-              flex-wrap: nowrap;
+              width: 100%;
+              padding-left: 3px;
+              &:nth-of-type(2) {
+                background: RGB(255, 185, 2);
+                .itemText {
+                  color: black;
+                }
+              }
+              &:nth-of-type(3) {
+                background: RGB(55, 178, 77);
+                .itemText {
+                  color: black;
+                }
+              }
+              &:nth-of-type(4) {
+                // display: none;
+                background: RGB(55, 178, 77);
+                .itemText {
+                  color: black;
+                }
+              }
+
+              .itemText {
+                font-size: 8px;
+                padding: 2px;
+                color: black;
+                font-weight: bold;
+              }
             }
           }
         }
         .done {
+          opacity: 0;
           border: none;
           cursor: auto;
           &:hover {

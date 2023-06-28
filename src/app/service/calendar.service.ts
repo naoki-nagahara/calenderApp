@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { CalendarType } from '../calendar.type';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +11,7 @@ export class CalendarService {
   nowMonth!: number;
   nowDay!: number;
   nowWeek!: number;
-  year = 2023;
+  year = 2022;
   startMonth = 1;
   endMonth = 12;
   emptyObj = {
@@ -19,7 +21,9 @@ export class CalendarService {
     style: false,
   };
   constructor() {}
-  getCalendar() {
+  getCalendar(): Observable<any> {
+    //初期化
+    this.calendar = [];
     const now = new Date();
     this.nowDay = now.getDate();
     this.nowMonth = now.getMonth();
@@ -37,6 +41,8 @@ export class CalendarService {
           dayOfWeek: dayOfWeekIndex,
           date: date,
           month: month,
+          schedule: 'OK',
+          color: '',
         });
       }
       this.calendar.push(monthCalendar);
@@ -51,5 +57,7 @@ export class CalendarService {
     let newCalender = [...this.calendar[this.nowMonth]];
     let nowObj = newCalender.filter((data: any) => data.date === this.nowDay);
     Object.assign(nowObj[0], { nowDate: true });
+    console.log(this.calendar, 'service');
+    return of(this.calendar);
   }
 }

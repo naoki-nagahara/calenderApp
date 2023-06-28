@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
+import { CdkDrag } from '@angular/cdk/drag-drop';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,9 @@ import { SubCalenderComponent } from './calender/sub-calender/sub-calender.compo
 import { ScheduleComponent } from './calender/sub-calender/schedule/schedule.component';
 import { AddScheduleComponent } from './add-schedule/add-schedule.component';
 import { CalenderItemComponent } from './calender/calender-item/calender-item.component';
+import { StoreModule } from '@ngrx/store';
+import { calendarReducer } from './redux/reducer/calendar.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,14 @@ import { CalenderItemComponent } from './calender/calender-item/calender-item.co
     AddScheduleComponent,
     CalenderItemComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, MatIconModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MatIconModule,
+    CdkDrag,
+    StoreModule.forRoot({ calendarStore: calendarReducer }),
+    StoreDevtoolsModule.instrument({}),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

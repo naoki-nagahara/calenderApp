@@ -20,18 +20,24 @@
     ul {
       margin-top: 20px;
       li {
-        border-bottom: 0.5px solid black;
-        padding-bottom: 5px;
+        border-bottom: 2px solid rgb(135, 130, 130);
+        padding-bottom: 7px;
         margin-bottom: 20px;
         div {
-          p {
-            margin-bottom: 5px;
-            font-weight: bold;
-          }
+          display: flex;
+          align-items: center;
+          gap: 5px;
           span {
-            color: rgb(93, 90, 90);
-            padding-left: 14px;
-            font-size: 12px;
+            display: block;
+            font-weight: bold;
+            padding: 0 5px;
+            position: relative;
+            background: linear-gradient(transparent 60%, yellow 40%);
+            border-radius: 10px;
+          }
+          .check {
+            font-weight: bold;
+            color: red;
           }
         }
       }
