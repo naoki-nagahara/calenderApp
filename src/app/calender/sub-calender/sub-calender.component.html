@@ -30,10 +30,20 @@
       </div>
     </div>
     <div class="days">
-      <div class="day" *ngFor="let item of calendar[initialMonth]">
-        <span class="eventDay" [ngClass]="{ done: item.style === false }">{{
-          item.date
-        }}</span>
+      <div
+        class="day"
+        *ngFor="let item of calendar[initialMonth]"
+        [ngClass]="{ color: item.schedule.length }"
+      >
+        <span
+          class="eventDay"
+          [style.background]="item.color"
+          [ngClass]="{
+            done: item.style === false,
+            color: item.schedule.length
+          }"
+          >{{ item.date }}</span
+        >
       </div>
     </div>
   </div>

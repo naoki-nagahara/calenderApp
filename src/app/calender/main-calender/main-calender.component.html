@@ -13,11 +13,12 @@
       <div class="days">
         <div
           class="days-inner"
-          *ngFor="let el of calendar[item]"
+          *ngFor="let el of viewMonth[item]"
           [ngClass]="{
             style: el.style === false,
             done: el.style === false,
-            nowDay: el.nowDate === true
+            nowDay: el.nowDate === true,
+            bgColor: el === selectedItem
           }"
           (click)="getData(el)"
         >
@@ -25,10 +26,11 @@
             <span class="date">{{ el.date }}</span>
           </div>
           <div class="itemSchedule">
-            <!-- 改行してる場合と、３っつ以上のリストがある場合は、「...」で省略するようにする -->
-            <!-- <p>お買い物お買い物お買い物お買い物</p>
-            <p>19時 ジム</p> -->
-            <div class="item">
+            <div
+              class="item"
+              *ngIf="el.schedule !== ''"
+              [style.background]="el.color"
+            >
               <p class="itemText">{{ el.schedule }}</p>
               <p class="itemBorder"></p>
             </div>
@@ -37,4 +39,5 @@
       </div>
     </div>
   </div>
+  <app-add-schedule [sendSchedule]="sendSchedule"></app-add-schedule>
 </div>

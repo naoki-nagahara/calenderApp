@@ -10,10 +10,10 @@ import { CalendarService } from 'src/app/service/calendar.service';
 export class SubCalenderComponent {
   constructor(private calendarService: CalendarService) {}
   initialMonth = 0;
-  year = 2023;
   calendar: any;
+  year = 0;
   month: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  weeks: string[] = ['日', '月', '火', '水', '木', '金', '土'];
+  weeks: string[] = [];
   nextMonth() {
     if (this.initialMonth < 11) {
       this.initialMonth += 1;
@@ -25,8 +25,12 @@ export class SubCalenderComponent {
     }
   }
   ngOnInit() {
-    this.calendarService.getCalendar().subscribe((data: CalendarType) => {
+    this.year = this.calendarService.year;
+    // this.month = this.calendarService.month;
+    this.weeks = this.calendarService.weeks;
+    this.calendarService.joinDays().subscribe((data: CalendarType) => {
       this.calendar = data;
+      console.log(data, 'OK');
     });
   }
 }

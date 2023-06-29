@@ -112,16 +112,28 @@
           }
         }
         .done {
-          opacity: 0;
           border: none;
+          background: rgb(241, 240, 240);
           cursor: auto;
           &:hover {
+            background: rgb(241, 240, 240);
+          }
+          .item {
             background: none;
           }
+          .date {
+            color: gray;
+          }
         }
-        .nowDay {
-          background: rgb(219, 205, 205);
+        .click {
+          background: rgb(230, 225, 225);
         }
+        .bgColor {
+          background: rgb(230, 225, 225);
+        }
+        // .nowDay {
+        //   background: rgb(219, 205, 205);
+        // }
       }
     }
   }

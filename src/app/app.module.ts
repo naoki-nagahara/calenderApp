@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
 import { CdkDrag } from '@angular/cdk/drag-drop';
@@ -34,6 +35,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     CdkDrag,
     StoreModule.forRoot({ calendarStore: calendarReducer }),
     StoreDevtoolsModule.instrument({}),
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

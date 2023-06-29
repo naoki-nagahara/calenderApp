@@ -2,7 +2,11 @@
   <div class="top"></div>
   <div class="container-inner">
     <div class="date">
-      <p>1月1日<span>に予定を追加</span></p>
+      <p *ngIf="sendSchedule !== undefined">
+        {{ sendSchedule.selectedMonth }}月{{ sendSchedule.date }}日<span
+          >に予定を追加</span
+        >
+      </p>
     </div>
     <div class="schedule">
       <p>予定</p>
@@ -19,7 +23,7 @@
     </div>
 
     <div class="button">
-      <button class="cancel">キャンセル</button>
+      <button class="cancel" (click)="addSchedule()">キャンセル</button>
       <button class="ok">追加</button>
     </div>
   </div>

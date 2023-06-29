@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { CalendarType } from '../calendar.type';
+import * as dayjs from 'dayjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CalendarService {
+  viewMonth: any = [];
   calendar: any = [];
   nowDate!: number;
   nowMonth!: number;
@@ -20,44 +22,81 @@ export class CalendarService {
     month: null,
     style: false,
   };
+  month: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  weeks: string[] = ['日', '月', '火', '水', '木', '金', '土'];
   constructor() {}
-  getCalendar(): Observable<any> {
-    //初期化
+  getYearDates(year: number) {
     this.calendar = [];
-    const now = new Date();
-    this.nowDay = now.getDate();
-    this.nowMonth = now.getMonth();
-    this.nowWeek = now.getDay();
+    const startDate = dayjs(`${year}-01-01`);
+    const endDate = dayjs(`${year}-12-31`);
+    let currentDate = startDate;
+    while (
+      currentDate.isBefore(endDate) ||
+      currentDate.isSame(endDate, 'day')
+    ) {
+      const month = currentDate.format('M');
+      const week = currentDate.day();
+      const date = currentDate.format('D');
+      if (!this.calendar[month]) {
+        this.calendar[month] = [];
+      }
+      this.calendar[month].push({
+        clicked: false,
+        selectedMonth: currentDate.format('M'),
+        month: currentDate,
+        date: date,
+        week: week,
+        schedule: 'OK',
+        color: 'RGB(95, 122, 227)',
+      });
+      currentDate = currentDate.add(1, 'day');
+    }
+    return this.calendar;
+  }
 
-    for (let month = this.startMonth; month <= this.endMonth; month++) {
-      const startDate = new Date(this.year, month - 1, 1);
-      const endDate = new Date(this.year, month, 0);
-      const monthCalendar: any = [];
-
-      for (let date = startDate.getDate(); date <= endDate.getDate(); date++) {
-        const currentDate = new Date(this.year, month - 1, date);
-        const dayOfWeekIndex = currentDate.getDay();
-        monthCalendar.push({
-          dayOfWeek: dayOfWeekIndex,
-          date: date,
-          month: month,
-          schedule: 'OK',
+  joinDays(): Observable<any> {
+    this.getYearDates(2022);
+    this.viewMonth = [];
+    for (let i = 1; i <= 12; i++) {
+      let month1 = this.calendar[i];
+      let month1First = month1[0];
+      let backMoth = month1First.month.subtract(month1First.month.day(), 'day');
+      let month1Index = month1.length;
+      let monthLast = month1[month1Index - 1];
+      let nextMonth = monthLast.month.add(6 - monthLast.month.day(), 'day');
+      //末日の曜日数字を取得して、来月の月から曜日数字分後から曜日数字分取得する
+      for (let i = 5 - monthLast.month.day(); i >= 0; i--) {
+        const date = nextMonth.subtract(i, 'day');
+        let week = date.day();
+        let day = date.format('D');
+        let newOBj = {
+          empty: true,
+          date: day,
+          week: '',
+          schedule: '',
           color: '',
-        });
+          style: false,
+        };
+        month1.push(newOBj);
       }
-      this.calendar.push(monthCalendar);
-    }
-    for (let i = 0; i < this.calendar.length; i++) {
-      //a回先頭にオブジェクトをいれる。
-      let a = this.calendar[i][0].dayOfWeek;
-      for (let j = 0; j < a; j++) {
-        this.calendar[i].unshift(this.emptyObj);
+      //初月の曜日数字を取得して、その前の月から曜日数字分前から曜日数字分取得する
+      for (let i = month1First.month.day() - 1; i >= 0; i--) {
+        const date = backMoth.add(i, 'day');
+        let week = date.day();
+        let day = date.format('D');
+        let newOBj = {
+          empty: true,
+          month: date,
+          date: day,
+          week: '',
+          schedule: '',
+          color: '',
+          style: false,
+        };
+        month1.unshift(newOBj);
       }
+      this.viewMonth.push(month1);
     }
-    let newCalender = [...this.calendar[this.nowMonth]];
-    let nowObj = newCalender.filter((data: any) => data.date === this.nowDay);
-    Object.assign(nowObj[0], { nowDate: true });
-    console.log(this.calendar, 'service');
-    return of(this.calendar);
+    return of(this.viewMonth);
   }
 }

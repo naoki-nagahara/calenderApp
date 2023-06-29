@@ -8,6 +8,8 @@ interface Calendar {
 
 export const initialState: Calendar = {
   data: {
+    clicked: false,
+    selectedMonth: '',
     color: '',
     date: 0,
     dayOfWeek: 0,
