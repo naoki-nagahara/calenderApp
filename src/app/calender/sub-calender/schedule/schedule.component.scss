@@ -19,14 +19,33 @@
 
     ul {
       margin-top: 20px;
+      .notSchedule {
+        border-bottom: 2px solid rgb(135, 130, 130);
+        padding-bottom: 7px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3px;
+      }
+
       li {
         border-bottom: 2px solid rgb(135, 130, 130);
         padding-bottom: 7px;
         margin-bottom: 20px;
+        width: 100%;
+
         div {
           display: flex;
           align-items: center;
           gap: 5px;
+          width: 100%;
+          .itemBox {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
           span {
             display: block;
             font-weight: bold;
@@ -35,7 +54,13 @@
             background: linear-gradient(transparent 60%, yellow 40%);
             border-radius: 10px;
           }
-          .check {
+          .deleteIcon {
+            cursor: pointer;
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+          .checkIcon {
             font-weight: bold;
             color: red;
           }

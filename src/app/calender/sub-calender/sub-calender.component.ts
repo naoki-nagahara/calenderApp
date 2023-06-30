@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CalendarType } from 'src/app/calendar.type';
 import { CalendarService } from 'src/app/service/calendar.service';
+import { Store } from '@ngrx/store';
+import { Calendar } from 'src/app/redux/reducer/calendar.reducer';
 
 @Component({
   selector: 'app-sub-calender',
@@ -8,7 +10,10 @@ import { CalendarService } from 'src/app/service/calendar.service';
   styleUrls: ['./sub-calender.component.scss'],
 })
 export class SubCalenderComponent {
-  constructor(private calendarService: CalendarService) {}
+  constructor(
+    private calendarService: CalendarService,
+    private store: Store<{ calendarStore: Calendar }>
+  ) {}
   initialMonth = 0;
   calendar: any;
   year = 0;
@@ -26,11 +31,9 @@ export class SubCalenderComponent {
   }
   ngOnInit() {
     this.year = this.calendarService.year;
-    // this.month = this.calendarService.month;
     this.weeks = this.calendarService.weeks;
-    this.calendarService.joinDays().subscribe((data: CalendarType) => {
-      this.calendar = data;
-      console.log(data, 'OK');
+    this.store.select('calendarStore').subscribe((data: Calendar) => {
+      this.calendar = data.data;
     });
   }
 }

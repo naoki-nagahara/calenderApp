@@ -17,8 +17,9 @@
           [ngClass]="{
             style: el.style === false,
             done: el.style === false,
-            nowDay: el.nowDate === true,
-            bgColor: el === selectedItem
+            bgColor: el === selectedItem,
+            today:el.today === true,
+            special:el.special === true,
           }"
           (click)="getData(el)"
         >
@@ -26,13 +27,17 @@
             <span class="date">{{ el.date }}</span>
           </div>
           <div class="itemSchedule">
-            <div
-              class="item"
-              *ngIf="el.schedule !== ''"
-              [style.background]="el.color"
-            >
-              <p class="itemText">{{ el.schedule }}</p>
-              <p class="itemBorder"></p>
+            <div *ngFor="let item of el.schedule">
+              <div
+                class="item"
+                *ngIf="item.text !== ''"
+                [style.background]="item.color"
+              >
+                <p class="itemText">
+                  {{ item.text }}
+                </p>
+                <p class="itemBorder"></p>
+              </div>
             </div>
           </div>
         </div>

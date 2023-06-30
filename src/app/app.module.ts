@@ -16,6 +16,8 @@ import { CalenderItemComponent } from './calender/calender-item/calender-item.co
 import { StoreModule } from '@ngrx/store';
 import { calendarReducer } from './redux/reducer/calendar.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { clickCalendarReducer } from './redux/reducer/ccalendarClick.reducer';
+import { todayReducer } from './redux/reducer/today.reducer';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AppRoutingModule,
     MatIconModule,
     CdkDrag,
-    StoreModule.forRoot({ calendarStore: calendarReducer }),
+    StoreModule.forRoot({
+      calendarStore: calendarReducer,
+      calenderClickStore: clickCalendarReducer,
+      toDayStore: todayReducer,
+    }),
     StoreDevtoolsModule.instrument({}),
     FormsModule,
   ],

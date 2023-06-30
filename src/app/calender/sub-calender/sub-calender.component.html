@@ -23,7 +23,7 @@
       <div class="weeks">
         <div
           *ngFor="let item of weeks; let i = index"
-          [ngClass]="{ colorRed: i === 0 || i === 6 }"
+          [ngClass]="{ colorRed: i === 0 }"
         >
           <p>{{ item }}</p>
         </div>
@@ -40,7 +40,9 @@
           [style.background]="item.color"
           [ngClass]="{
             done: item.style === false,
-            color: item.schedule.length
+            color: item.schedule.length,
+            today: item.today === true,
+            special:item.special === true,
           }"
           >{{ item.date }}</span
         >

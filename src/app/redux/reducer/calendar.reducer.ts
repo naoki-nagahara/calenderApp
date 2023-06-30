@@ -1,8 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 import { CalendarType } from 'src/app/calendar.type';
 import { calendarAction } from '../action/calendar.action';
+import { calendarClickAction } from '../action/click.action';
 
-interface Calendar {
+export interface Calendar {
   data: CalendarType;
 }
 
@@ -13,7 +14,7 @@ export const initialState: Calendar = {
     color: '',
     date: 0,
     dayOfWeek: 0,
-    schedule: '',
+    schedule: [],
     month: 0,
   },
 };

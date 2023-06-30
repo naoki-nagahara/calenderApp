@@ -10,21 +10,31 @@
     </div>
     <div class="schedule">
       <p>予定</p>
-      <input type="text" placeholder="予定を追加" />
+      <input type="text" placeholder="予定を追加" [(ngModel)]="formText" />
     </div>
     <div class="color">
       <p>色を選択</p>
       <div class="color-inner">
-        <div class="color-red"></div>
-        <div class="color-red"></div>
-        <div class="color-red"></div>
-        <div class="color-red"></div>
+        <div class="color-red" (click)="clickColor('RGB(95, 122, 227)')"></div>
+        <div class="color-red" (click)="clickColor('RGB(255, 185, 2)')"></div>
+        <div class="color-red" (click)="clickColor('RGB(255, 37, 0)')"></div>
+        <div class="color-red" (click)="clickColor('RGB(42, 41, 62)')"></div>
+        <div class="color-red" (click)="clickColor('RGB(0, 196, 179)')"></div>
+        <div class="color-red" (click)="clickColor('RGB(188, 238, 104)')"></div>
+        <div class="color-red" (click)="clickColor('RGB(136, 192, 208)')"></div>
+        <div class="color-red" (click)="clickColor('RGB(138, 43, 226)')"></div>
+        <div class="color-red" (click)="clickColor('RGB(139, 35, 35)')"></div>
+        <div class="color-red" (click)="clickColor('RGB(255, 110, 180)')"></div>
+        <div class="color-red" (click)="clickColor('RGB(216, 222, 233)')"></div>
+        <div class="color-red" (click)="clickColor('RGB(102, 205, 0)')"></div>
+        <div class="color-red" (click)="clickColor('RGB(3, 79, 132)')"></div>
+        <div class="color-red" (click)="clickColor('RGB(0,0, 0)')"></div>
       </div>
     </div>
 
     <div class="button">
-      <button class="cancel" (click)="addSchedule()">キャンセル</button>
-      <button class="ok">追加</button>
+      <button class="cancel">キャンセル</button>
+      <button class="ok" (click)="addSchedule()">追加</button>
     </div>
   </div>
 </div>

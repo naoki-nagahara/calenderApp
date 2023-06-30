@@ -6,5 +6,5 @@ export interface CalendarType {
   date: number;
   dayOfWeek: number;
   month?: number;
-  schedule: string;
+  schedule: string[];
 }

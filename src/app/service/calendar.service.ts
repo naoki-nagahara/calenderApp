@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { CalendarType } from '../calendar.type';
 import * as dayjs from 'dayjs';
 
 @Injectable({
@@ -13,7 +12,7 @@ export class CalendarService {
   nowMonth!: number;
   nowDay!: number;
   nowWeek!: number;
-  year = 2022;
+  year = 2023;
   startMonth = 1;
   endMonth = 12;
   emptyObj = {
@@ -30,6 +29,8 @@ export class CalendarService {
     const startDate = dayjs(`${year}-01-01`);
     const endDate = dayjs(`${year}-12-31`);
     let currentDate = startDate;
+    const today = dayjs();
+
     while (
       currentDate.isBefore(endDate) ||
       currentDate.isSame(endDate, 'day')
@@ -41,13 +42,19 @@ export class CalendarService {
         this.calendar[month] = [];
       }
       this.calendar[month].push({
+        special: currentDate.day() === 0 ? true : false,
+        today: currentDate.isSame(today, 'day') ? true : false,
         clicked: false,
         selectedMonth: currentDate.format('M'),
         month: currentDate,
         date: date,
         week: week,
-        schedule: 'OK',
-        color: 'RGB(95, 122, 227)',
+        schedule: [
+          // {
+          //   text: '梅田でのみ',
+          //   color: '',
+          // },
+        ],
       });
       currentDate = currentDate.add(1, 'day');
     }
@@ -55,7 +62,8 @@ export class CalendarService {
   }
 
   joinDays(): Observable<any> {
-    this.getYearDates(2022);
+    console.log('Service呼び出し');
+    this.getYearDates(2023);
     this.viewMonth = [];
     for (let i = 1; i <= 12; i++) {
       let month1 = this.calendar[i];

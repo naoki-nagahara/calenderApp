@@ -1,8 +1,8 @@
 .container {
   position: absolute;
   z-index: 20;
-  top: 55%;
-  left: 3.5%;
+  top: 58%;
+  right: 1%;
   width: 300px;
   background: white;
   border-radius: 20px;
@@ -36,6 +36,7 @@
       p {
         font-size: 14px;
         margin-bottom: 5px;
+        color: white;
       }
 
       input {
@@ -52,7 +53,7 @@
       &-inner {
         width: 80%;
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(7, 1fr);
         gap: 5px;
         margin-top: 5px;
         :nth-of-type(1) {
@@ -67,10 +68,40 @@
         :nth-of-type(4) {
           background: RGB(42, 41, 62);
         }
+        :nth-of-type(5) {
+          background: RGB(0, 196, 179);
+        }
+        :nth-of-type(6) {
+          background: RGB(188, 238, 104);
+        }
+        :nth-of-type(7) {
+          background: RGB(136, 192, 208);
+        }
+        :nth-of-type(8) {
+          background: RGB(138, 43, 226);
+        }
+        :nth-of-type(9) {
+          background: RGB(139, 35, 35);
+        }
+        :nth-of-type(10) {
+          background: RGB(255, 110, 180);
+        }
+        :nth-of-type(11) {
+          background: RGB(216, 222, 233);
+        }
+        :nth-of-type(12) {
+          background: RGB(102, 205, 0);
+        }
+        :nth-of-type(13) {
+          background: RGB(3, 79, 132);
+        }
+        :nth-of-type(14) {
+          background: RGB(0, 0, 0);
+        }
 
         div {
-          width: 30px;
-          height: 30px;
+          width: 28px;
+          height: 28px;
           cursor: pointer;
           &:hover {
             opacity: 0.9;

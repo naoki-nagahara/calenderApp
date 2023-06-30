@@ -1,6 +1,11 @@
 .subCalender {
-  height: 100%;
   padding: 10px;
+  height: 88vh;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   .subCalenderInner {
     padding: 20px 30px;
     width: 100%;
@@ -72,6 +77,12 @@
         }
         .done {
           color: rgb(175, 170, 170);
+        }
+        .today {
+          color: rgb(164, 39, 39);
+        }
+        .special {
+          color: RGB(240, 62, 62);
         }
       }
     }

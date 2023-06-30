@@ -2,13 +2,16 @@
   width: 100%;
   height: 88vh;
   overflow-y: auto;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   &::-webkit-scrollbar {
     display: none;
   }
+  &-container:not(:first-child) {
+    margin-top: 40px;
+  }
   &-container {
     height: auto;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     padding: 20px 40px 50px 40px;
 
     .year {
@@ -53,9 +56,8 @@
         grid-template-columns: repeat(7, 1fr);
         grid-auto-rows: 1fr;
         &-inner {
-          height: 100px;
+          height: 105px;
           width: 185px;
-          // border: 1px solid rgb(219, 210, 210);
           border: 2px solid rgb(161, 156, 156);
           border-radius: 5px;
           margin: 4px auto;
@@ -65,7 +67,7 @@
             background: rgb(230, 225, 225);
           }
           .dateContainer {
-            padding: 3px;
+            padding: 3px 3px 1px 10px;
             .date {
               font-weight: bold;
               font-size: 14px;
@@ -82,31 +84,13 @@
               border-radius: 3px;
               width: 100%;
               padding-left: 3px;
-              &:nth-of-type(2) {
-                background: RGB(255, 185, 2);
-                .itemText {
-                  color: black;
-                }
-              }
-              &:nth-of-type(3) {
-                background: RGB(55, 178, 77);
-                .itemText {
-                  color: black;
-                }
-              }
-              &:nth-of-type(4) {
-                // display: none;
-                background: RGB(55, 178, 77);
-                .itemText {
-                  color: black;
-                }
-              }
 
               .itemText {
                 font-size: 8px;
                 padding: 2px;
-                color: black;
+                color: rgb(217, 212, 212);
                 font-weight: bold;
+                letter-spacing: 2px;
               }
             }
           }
@@ -131,9 +115,18 @@
         .bgColor {
           background: rgb(230, 225, 225);
         }
-        // .nowDay {
-        //   background: rgb(219, 205, 205);
-        // }
+        .today {
+          background: RGB(136, 192, 208);
+          border: none;
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+        .special {
+          .date {
+            color: RGB(240, 62, 62);
+          }
+        }
       }
     }
   }

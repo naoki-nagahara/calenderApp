@@ -2,19 +2,25 @@
   <div class="schedule-item">
     <div class="title">
       <mat-icon> list_alt</mat-icon>
-      <h1>予定</h1>
+      <h1>{{ schedule.selectedMonth }}月{{ schedule.date }}の予定</h1>
     </div>
     <ul>
-      <li>
+      <div
+        class="notSchedule"
+        *ngIf="schedule === undefined || !schedule.length"
+      >
+        <mat-icon>person</mat-icon>
+        <h1>予定はありません。</h1>
+      </div>
+      <li *ngFor="let item of schedule.schedule">
         <div class="schedule-item-inner">
-          <mat-icon class="check">check</mat-icon>
-          <span>買い物</span>
-        </div>
-      </li>
-      <li>
-        <div class="schedule-item-inner">
-          <mat-icon class="check">check</mat-icon>
-          <span>１９時からジム</span>
+          <mat-icon class="checkIcon">check</mat-icon>
+          <div class="itemBox">
+            <span>{{ item.text }}</span>
+            <mat-icon class="deleteIcon" (click)="deleteItem()"
+              >cancel</mat-icon
+            >
+          </div>
         </div>
       </li>
     </ul>
