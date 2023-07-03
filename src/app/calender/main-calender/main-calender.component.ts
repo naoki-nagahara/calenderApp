@@ -1,12 +1,9 @@
-import { ViewportScroller } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { CalendarType } from 'src/app/calendar.type';
 import { CalendarService } from 'src/app/service/calendar.service';
-import { Store, select } from '@ngrx/store';
-import { calendarAction } from 'src/app/redux/action/calendar.action';
+import { Store } from '@ngrx/store';
 import { Calendar } from 'src/app/redux/reducer/calendar.reducer';
 import { calendarClickAction } from 'src/app/redux/action/click.action';
-import { clickCalendarReducer } from 'src/app/redux/reducer/ccalendarClick.reducer';
 
 @Component({
   selector: 'app-main-calender',
@@ -19,7 +16,8 @@ export class MainCalenderComponent {
     private store: Store<{
       calendarStore: Calendar;
       calenderClickStore: Calendar;
-    }> // private ItemStore: Store<{ calenderClickStore: Calendar }>
+      toDayStore: any;
+    }>
   ) {}
   month: number[] = [];
   weeks: string[] = [];
@@ -28,6 +26,7 @@ export class MainCalenderComponent {
   sendSchedule!: CalendarType;
   clickedItem = false;
   selectedItem!: CalendarType;
+  initialMonth: number = 0;
 
   getData(el: CalendarType) {
     if (el.empty === true) return;
@@ -45,5 +44,15 @@ export class MainCalenderComponent {
       console.log('MainComponent');
       this.viewMonth = data.data;
     });
+    this.store.select('toDayStore').subscribe((data: Calendar) => {
+      this.initialMonth = data.data.selectedMonth;
+    });
+  }
+  ngAfterViewInit() {
+    let mainContainer: HTMLElement = document.querySelector('.mainCalender')!;
+    let monthItems = document.querySelectorAll('.mainCalender-container');
+    let item1: any = monthItems[this.initialMonth - 1]!;
+    let itemTop = item1.offsetTop;
+    mainContainer.scrollTop = itemTop - 115;
   }
 }

@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { CalendarType } from 'src/app/calendar.type';
 import { calendarAction } from '../action/calendar.action';
 import { calendarClickAction } from '../action/click.action';
+import { updateScheduleAction } from '../action/addSchedule.action';
 
 export interface Calendar {
   data: CalendarType;
@@ -24,5 +25,15 @@ export const calendarReducer = createReducer(
   on(calendarAction, (state, { data }) => ({
     ...state,
     data: data,
-  }))
+  })),
+  on(
+    updateScheduleAction,
+    (state: { data: any }, { data, selectedMonth, ObjIndex }) => {
+      console.log(state.data[selectedMonth - 1][ObjIndex].schedule);
+      let clone = structuredClone(state);
+      clone.data[selectedMonth - 1][ObjIndex].schedule.push(data);
+      console.log(clone);
+      return clone;
+    }
+  )
 );

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { first } from 'rxjs';
+import { first, of, switchMap } from 'rxjs';
 import { CalendarType } from 'src/app/calendar.type';
+import { calendarAction } from 'src/app/redux/action/calendar.action';
 import { Calendar } from 'src/app/redux/reducer/calendar.reducer';
 
 @Component({
@@ -12,6 +13,10 @@ import { Calendar } from 'src/app/redux/reducer/calendar.reducer';
 export class ScheduleComponent {
   isShow = true;
   schedule?: any = '';
+  selectedMonth = 7;
+  selectedDay = 0;
+  AllCalendar: any;
+  objIndex: any;
 
   constructor(
     private store: Store<{
@@ -20,34 +25,43 @@ export class ScheduleComponent {
       calendarStore: any;
     }>
   ) {}
-  deleteItem() {
-    console.log('DELETE');
-  }
-  ngOnInit() {
-    this.store.select('calenderClickStore').subscribe((clickData: Calendar) => {
-      let month = clickData.data.selectedMonth;
-      let day = clickData.data.date;
-      let getmonth = clickData.data.selectedMonth;
-
-      this.store.select('calendarStore').subscribe((data) => {
-        console.log(this.schedule, 'うんでふぁ！');
-
-        if (data.data[month - 1]) {
-          let dayIndex = data.data[month - 1].findIndex((obj: any) => {
-            return obj.date === day && obj.selectedMonth === getmonth;
-          });
-          this.schedule = data.data[month - 1][dayIndex];
-          console.log(this.schedule, 'うんでふぁ！');
-        }
-      });
-    });
+  toDayToggle() {
     this.store
       .select('toDayStore')
       .pipe(first())
-      .subscribe((data: { data: Calendar }) => {
+      .subscribe((data: { data: any }) => {
         console.log('初回');
         this.schedule = data.data;
+        this.selectedMonth = data.data.selectedMonth;
       });
-    console.log(this.schedule.length, 'うんでふぁ！');
+  }
+  showClickSchedule() {
+    console.log('発火');
+    this.store.select('calenderClickStore').subscribe((clickData: Calendar) => {
+      this.selectedMonth = clickData.data.selectedMonth;
+      this.selectedDay = clickData.data.date;
+      this.store.select('calendarStore').subscribe((data) => {
+        if (data.data[this.selectedMonth - 1]) {
+          console.log('発火');
+          this.objIndex = data.data[this.selectedMonth - 1].findIndex(
+            (obj: any) => {
+              return (
+                obj.date === this.selectedDay &&
+                obj.selectedMonth === this.selectedMonth
+              );
+            }
+          );
+          console.log(this.objIndex);
+          this.schedule = data.data[this.selectedMonth - 1][this.objIndex];
+        }
+      });
+    });
+  }
+
+  deleteItem(i: number) {}
+  ngOnInit() {
+    this.showClickSchedule();
+    this.toDayToggle();
+    console.log(this.selectedDay, this.selectedMonth, this.objIndex);
   }
 }

@@ -2,6 +2,7 @@
   width: 100%;
   height: 88vh;
   overflow-y: auto;
+  // overflow: hidden;
   padding: 10px 10px 0 10px;
   &::-webkit-scrollbar {
     display: none;
@@ -56,12 +57,13 @@
         grid-template-columns: repeat(7, 1fr);
         grid-auto-rows: 1fr;
         &-inner {
-          height: 105px;
+          height: 100px;
           width: 185px;
           border: 2px solid rgb(161, 156, 156);
           border-radius: 5px;
           margin: 4px auto;
           overflow: hidden;
+          text-overflow: ellipsis;
           cursor: pointer;
           &:hover {
             background: rgb(230, 225, 225);
@@ -77,13 +79,18 @@
             width: 90%;
             margin: 0 auto;
             margin-top: 3px;
-            height: 100px;
+            // height: 100px;
+            height: 100%;
+
             .item {
               margin-bottom: 6px;
               background-color: RGB(95, 122, 227);
               border-radius: 3px;
               width: 100%;
               padding-left: 3px;
+              // &:nth-child(4) {
+              //   display: none;
+              // }
 
               .itemText {
                 font-size: 8px;

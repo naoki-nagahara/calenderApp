@@ -12,7 +12,7 @@ import { Calendar } from 'src/app/redux/reducer/calendar.reducer';
 export class SubCalenderComponent {
   constructor(
     private calendarService: CalendarService,
-    private store: Store<{ calendarStore: Calendar }>
+    private store: Store<{ calendarStore: Calendar; toDayStore: any }>
   ) {}
   initialMonth = 0;
   calendar: any;
@@ -34,6 +34,11 @@ export class SubCalenderComponent {
     this.weeks = this.calendarService.weeks;
     this.store.select('calendarStore').subscribe((data: Calendar) => {
       this.calendar = data.data;
+      console.log(this.calendar[6]);
+    });
+    this.store.select('toDayStore').subscribe((data) => {
+      console.log(data);
+      this.initialMonth = data.data.selectedMonth - 1;
     });
   }
 }

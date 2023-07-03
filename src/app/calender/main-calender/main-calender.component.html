@@ -1,5 +1,9 @@
-<div class="mainCalender" #scrollContainer>
-  <div class="mainCalender-container card" *ngFor="let item of month">
+<div class="mainCalender">
+  <div
+    class="mainCalender-container card"
+    id="monthItem"
+    *ngFor="let item of month"
+  >
     <div class="year">
       <h1>{{ year }}年</h1>
       <h2 class="month">{{ item + 1 }}<span>月</span></h2>
@@ -21,6 +25,7 @@
             today:el.today === true,
             special:el.special === true,
           }"
+          [attr.id]="el.today ? 'todayId' : null"
           (click)="getData(el)"
         >
           <div class="dateContainer">

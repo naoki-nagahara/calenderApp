@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { Store } from '@ngrx/store/src';
 import * as dayjs from 'dayjs';
 
 @Injectable({
@@ -51,7 +52,11 @@ export class CalendarService {
         week: week,
         schedule: [
           // {
-          //   text: '梅田でのみ',
+          //   text: '奈良帰省',
+          //   color: '',
+          // },
+          // {
+          //   text: '１９時からジム',
           //   color: '',
           // },
         ],

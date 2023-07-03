@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { CalendarType } from '../calendar.type';
 import { calendarAction } from '../redux/action/calendar.action';
 import * as dayjs from 'dayjs';
+import { updateScheduleAction } from '../redux/action/addSchedule.action';
 
 @Component({
   selector: 'app-add-schedule',
@@ -18,8 +19,8 @@ export class AddScheduleComponent {
 
   constructor(
     private store: Store<{
-      calendarStore: { data: any[] };
-      calenderClickStore: { data: any };
+      calendarStore: { data: CalendarType[] };
+      calenderClickStore: { data: CalendarType };
     }>
   ) {}
   clickColor(color: string) {
@@ -28,25 +29,31 @@ export class AddScheduleComponent {
   addSchedule() {
     const current = this.sendSchedule;
     const month = this.sendSchedule.selectedMonth;
+    console.log(current, month);
     if (this.formText.length) {
       this.store.select('calendarStore').subscribe((data) => {
         this.list = structuredClone(data.data);
       });
-      let DayIndex = this.list[month - 1].findIndex((obj: any) => {
-        return (
-          obj.date === current.date &&
-          obj.selectedMonth === current.selectedMonth
-        );
-      });
-      console.log(DayIndex);
+      let dayIndex: number = this.list[month - 1].findIndex(
+        (obj: CalendarType) => {
+          return (
+            obj.date === current.date &&
+            obj.selectedMonth === current.selectedMonth
+          );
+        }
+      );
       let newObj = {
         text: this.formText,
         color: this.selectedColor,
       };
-      this.list[month - 1][DayIndex].color = this.selectedColor;
-      this.list[month - 1][DayIndex].schedule.push(newObj);
+      this.store.dispatch(
+        updateScheduleAction({
+          data: newObj,
+          selectedMonth: month,
+          ObjIndex: dayIndex,
+        })
+      );
       this.formText = '';
-      this.store.dispatch(calendarAction({ data: this.list }));
     }
   }
 
