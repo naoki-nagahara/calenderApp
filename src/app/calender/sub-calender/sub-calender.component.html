@@ -32,12 +32,14 @@
     <div class="days">
       <div
         class="day"
-        *ngFor="let item of calendar[initialMonth]"
-        [ngClass]="{ color: item.schedule.length }"
+        *ngFor="let item of calendar[initialMonth]; let i = index"
+        [style.background]="
+          item.schedule.length > i ? item.schedule[i].color : ''
+        "
       >
+        <!-- [style.background]="item.schedule[0].color" -->
         <span
           class="eventDay"
-          [style.background]="item.color"
           [ngClass]="{
             done: item.style === false,
             color: item.schedule.length,

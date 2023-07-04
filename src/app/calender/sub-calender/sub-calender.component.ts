@@ -34,11 +34,15 @@ export class SubCalenderComponent {
     this.weeks = this.calendarService.weeks;
     this.store.select('calendarStore').subscribe((data: Calendar) => {
       this.calendar = data.data;
-      console.log(this.calendar[6]);
+      this.calendar[this.initialMonth][10].schedule.map((data: any) => {
+        console.log(data.color);
+      });
+      console.log('mini');
     });
     this.store.select('toDayStore').subscribe((data) => {
       console.log(data);
       this.initialMonth = data.data.selectedMonth - 1;
     });
+    console.log(this.calendar);
   }
 }

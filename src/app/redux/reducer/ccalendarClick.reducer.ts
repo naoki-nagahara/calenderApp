@@ -4,7 +4,7 @@ import { Calendar } from './calendar.reducer';
 
 export const clickData: Calendar = {
   data: {
-    clicked: false,
+    clicked: true,
     selectedMonth: '',
     color: '',
     date: 0,
@@ -15,8 +15,9 @@ export const clickData: Calendar = {
 };
 export const clickCalendarReducer = createReducer(
   clickData,
-  on(calendarClickAction, (state, { clickData }) => ({
+  on(calendarClickAction, (state, { clickData, hasClick }) => ({
     ...state,
     data: clickData,
+    click: hasClick,
   }))
 );

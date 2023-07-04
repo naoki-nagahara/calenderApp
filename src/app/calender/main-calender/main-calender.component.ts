@@ -33,7 +33,7 @@ export class MainCalenderComponent {
     this.selectedItem = el;
     this.sendSchedule = el;
     console.log(el);
-    this.store.dispatch(calendarClickAction({ clickData: el }));
+    this.store.dispatch(calendarClickAction({ clickData: el, hasClick: true }));
   }
 
   ngOnInit() {

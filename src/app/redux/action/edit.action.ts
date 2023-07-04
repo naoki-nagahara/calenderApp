@@ -1,10 +1,11 @@
 import { createAction, props } from '@ngrx/store';
 
-export const deleteAction = createAction(
-  'DeleteAction',
+export const EditAction = createAction(
+  'EditAction',
   props<{
+    editText: string;
     selectedMonth: number;
-    selectItemIndex: number;
     objIndex: number;
+    scheduleIndex: number;
   }>()
 );

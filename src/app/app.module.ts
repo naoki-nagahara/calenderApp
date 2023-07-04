@@ -12,7 +12,6 @@ import { MainCalenderComponent } from './calender/main-calender/main-calender.co
 import { SubCalenderComponent } from './calender/sub-calender/sub-calender.component';
 import { ScheduleComponent } from './calender/sub-calender/schedule/schedule.component';
 import { AddScheduleComponent } from './add-schedule/add-schedule.component';
-import { CalenderItemComponent } from './calender/calender-item/calender-item.component';
 import { StoreModule } from '@ngrx/store';
 import { calendarReducer } from './redux/reducer/calendar.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -28,7 +27,6 @@ import { todayReducer } from './redux/reducer/today.reducer';
     SubCalenderComponent,
     ScheduleComponent,
     AddScheduleComponent,
-    CalenderItemComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,12 @@
         padding-left: 5px;
       }
     }
+    .editInfo {
+      text-align: center;
+      margin: 8px 0;
+      font-weight: bold;
+      font-size: 13px;
+    }
 
     ul {
       margin-top: 20px;
@@ -32,19 +38,58 @@
 
       li {
         border-bottom: 2px solid rgb(135, 130, 130);
-        padding-bottom: 7px;
-        margin-bottom: 20px;
+        padding: 10px 0;
         width: 100%;
-
+        &:hover {
+          background: rgb(213, 208, 208);
+        }
         div {
           display: flex;
           align-items: center;
           gap: 5px;
           width: 100%;
+          .editIcon {
+            // opacity: 0;
+            display: block;
+            transition: 0.2s;
+            cursor: pointer;
+            &:hover {
+              color: rgb(76, 75, 75);
+            }
+          }
           .itemBox {
             display: flex;
             align-items: center;
             justify-content: space-between;
+
+            input {
+              border: none;
+              cursor: pointer;
+              font-weight: bold;
+              padding: 5px 5px;
+            }
+            input[type="text"]::placeholder {
+              color: black;
+              font-weight: bold;
+            }
+            input:focus {
+              &::placeholder {
+                opacity: 0.6;
+              }
+            }
+            input:focus + .editIcon {
+              // opacity: 1;
+              display: inline-block;
+            }
+            .deleteIcon {
+              cursor: pointer;
+              &:hover {
+                opacity: 0.8;
+              }
+            }
+            input:focus-within + .deleteIcon {
+              opacity: 0;
+            }
           }
           span {
             display: block;
@@ -54,12 +99,7 @@
             background: linear-gradient(transparent 60%, yellow 40%);
             border-radius: 10px;
           }
-          .deleteIcon {
-            cursor: pointer;
-            &:hover {
-              opacity: 0.8;
-            }
-          }
+
           .checkIcon {
             font-weight: bold;
             color: red;

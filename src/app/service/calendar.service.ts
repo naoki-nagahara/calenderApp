@@ -51,14 +51,8 @@ export class CalendarService {
         date: date,
         week: week,
         schedule: [
-          // {
-          //   text: '奈良帰省',
-          //   color: '',
-          // },
-          // {
-          //   text: '１９時からジム',
-          //   color: '',
-          // },
+          // { text: 'aaa', color: '' },
+          // { text: 'aaa', color: '' },
         ],
       });
       currentDate = currentDate.add(1, 'day');

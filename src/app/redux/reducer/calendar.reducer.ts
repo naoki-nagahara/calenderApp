@@ -3,6 +3,8 @@ import { CalendarType } from 'src/app/calendar.type';
 import { calendarAction } from '../action/calendar.action';
 import { calendarClickAction } from '../action/click.action';
 import { updateScheduleAction } from '../action/addSchedule.action';
+import { deleteAction } from '../action/delete.action';
+import { EditAction } from '../action/edit.action';
 
 export interface Calendar {
   data: CalendarType;
@@ -29,10 +31,38 @@ export const calendarReducer = createReducer(
   on(
     updateScheduleAction,
     (state: { data: any }, { data, selectedMonth, ObjIndex }) => {
+      console.log('AddReducer');
       console.log(state.data[selectedMonth - 1][ObjIndex].schedule);
       let clone = structuredClone(state);
       clone.data[selectedMonth - 1][ObjIndex].schedule.push(data);
       console.log(clone);
+      return clone;
+    }
+  ),
+  on(
+    deleteAction,
+    (state: { data: any }, { selectedMonth, selectItemIndex, objIndex }) => {
+      console.log('DeleteReducer');
+      let clone = structuredClone(state);
+      clone.data[selectedMonth - 1][objIndex].schedule.splice(
+        selectItemIndex,
+        1
+      );
+      return clone;
+    }
+  ),
+  on(
+    EditAction,
+    (
+      state: { data: any },
+      { editText, selectedMonth, objIndex, scheduleIndex }
+    ) => {
+      let clone = structuredClone(state);
+      console.log(editText, selectedMonth, objIndex, scheduleIndex);
+      clone.data[selectedMonth - 1][objIndex].schedule[scheduleIndex].text =
+        editText;
+      console.log(clone);
+      console.log(clone.data[selectedMonth][objIndex].schedule);
       return clone;
     }
   )
